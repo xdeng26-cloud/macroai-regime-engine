@@ -1,16 +1,24 @@
 # MacroAI Regime Engine
 
-MacroAI is a Streamlit dashboard I built to explore a simple question: can macroeconomic regimes help explain how SPY, QQQ, and TLT behave over the next few weeks?
+MacroAI is a Streamlit dashboard I built to explore: can macroeconomic regimes help explain how SPY, QQQ, and TLT behave over the next few weeks?
 
-The app pulls macro data from FRED, ETF prices from Yahoo Finance, groups similar macro environments with K-means clustering, and then tests whether a Random Forest model can produce useful 20-day return signals.
+The app basically pulls macro data from FRED, ETF prices from Yahoo Finance, groups similar macro environments with K-means clustering, and then tests whether a Random Forest model can produce useful 20-day return signals.
 
-This is a portfolio project, not a trading system. The goal is to make the data, assumptions, model behavior, and backtest results easy to inspect.
+Planning to update using FUTU's real-time data, but the coding platform is in Chinese, making the conversion extremely hard. Will find a solution or an alternative API port. 
+
+As mentioned above, I will be adding individual stocks I deem interesting over time. Tracking index isn't just as fun.
+
+Warning!!! This is a portfolio project and not a trading system. The goal is to make the data, assumptions, model behaviour, and backtest results easy to inspect.
+
+Plz ! Plz give it time to load. Everything is working fine. Pulling data takes too long, and I am not an expert in minimizing the flow.
 
 ## Why I Built This
 
 Markets do not behave the same way in every macro environment. High inflation, rising rates, widening credit spreads, or elevated volatility can all change which assets lead or lag.
 
 I wanted to build a dashboard that connects those macro conditions to ETF returns in a transparent way. Instead of only showing a model prediction, the app also shows the regime history, model quality checks, backtest results, risk metrics, and robustness tests.
+
+Again, this only serves as a secondary source of analysis.
 
 ## Data Sources
 
@@ -30,7 +38,7 @@ I wanted to build a dashboard that connects those macro conditions to ETF return
 - Shows bullish probabilities and signal strength labels
 - Compares model accuracy against a simple baseline
 - Runs a simple 20-day strategy backtest
-- Calculates risk metrics such as drawdown, Sharpe, Sortino, and Calmar
+- Calculates risk metrics like drawdown, Sharpe, Sortino, and Calmar
 - Tests robustness across horizons, confidence thresholds, cluster counts, and time periods
 - Generates a plain-English analyst summary without calling an external AI API
 
@@ -45,7 +53,7 @@ The prediction model uses a separate `RandomForestClassifier` for each ETF. For 
 0 otherwise
 ```
 
-The model uses macro features and the current K-means cluster as inputs. Forward returns are used only as labels, never as features.
+My model uses macro features and the current K-means cluster as inputs. Forward returns are used only as labels, never as features.
 
 ## Backtest Approach
 
@@ -64,11 +72,11 @@ The simple strategy works like this:
 
 This project is intentionally simple and should be treated as research.
 
-- The backtest does not include transaction costs, taxes, slippage, or liquidity constraints.
+- The backtest ignored transaction costs, taxes, slippage, or liquidity constraints.
 - Forward-return windows overlap, so the observations are not fully independent.
-- FRED data can be revised over time.
-- Random Forest probabilities are model estimates, not reliable forecasts.
-- Regime labels are interpretive and should be reviewed manually.
+- FRED data can be revised over time, and I can do nothing about it.
+- Random Forest probabilities are model estimates only.
+- Regime labels are interpretive and should be reviewed by a person.
 - Good historical performance in this dashboard does not mean the strategy will work in the future.
 
 ## Running Locally
@@ -89,13 +97,13 @@ pip install -r requirements.txt
 Add a FRED API key using either `.env`:
 
 ```text
-FRED_API_KEY=your_fred_api_key_here
+FRED_API_KEY= get your own api key
 ```
 
 Or Streamlit secrets at `.streamlit/secrets.toml`:
 
 ```toml
-FRED_API_KEY = "your_fred_api_key_here"
+FRED_API_KEY = "get your own api key"
 ```
 
 Run the app:
@@ -104,6 +112,10 @@ Run the app:
 streamlit run app.py
 ```
 
+## The end for now
+Please let me know any suggestions for future update/ projects. :D
+
 ## Disclaimer
 
 MacroAI is for research and educational use only. It is not financial advice and is not a recommendation to buy or sell any security.
+If anyone is gonna use my code, at least credit me or let me know, thx. 
