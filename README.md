@@ -1,4 +1,4 @@
-# MacroAI Regime Engine
+# MacroAI Regime Engine (https://macroai-engine.streamlit.app/)
 
 MacroAI is a Streamlit dashboard I built to explore: can macroeconomic regimes help explain how SPY, QQQ, and TLT behave over the next few weeks?
 
